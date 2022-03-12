@@ -1,4 +1,4 @@
-﻿using LearningTask.Entities;
+﻿using LearningTask.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace LearningTask.Contexts

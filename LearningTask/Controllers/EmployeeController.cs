@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using LearningTask.Contexts;
-using LearningTask.Entities;
+using LearningTask.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LearningTask.Controllers
@@ -51,8 +51,8 @@ namespace LearningTask.Controllers
         [HttpGet("all")]
         public IActionResult GetEmployees() => Json(ctx.Employees);
 
-        [HttpGet]
-        public IActionResult GetTenEmployees([FromQuery]int page, [FromQuery]string orderby, [FromQuery]bool descending)
+        [HttpGet("page/{page:int}")]
+        public IActionResult GetTenEmployees(int page, [FromQuery]string orderby, [FromQuery]bool descending)
         {
             Func<Employee, IComparable> orderFunc = orderby switch
             {
