@@ -8,7 +8,7 @@ namespace LearningTask.Contexts
         public PostgresContext(DbContextOptions<PostgresContext> options)
             :base(options) { }
         
-        private DbSet<Employee> Employees { get; set; }
+        public DbSet<Employee> Employees { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
