@@ -2,6 +2,7 @@
 using System.Linq;
 using LearningTask.Contexts;
 using LearningTask.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LearningTask.Controllers
@@ -18,9 +19,11 @@ namespace LearningTask.Controllers
             this.ctx = ctx;
         }
 
+        [Authorize]
         [HttpGet("{id:long}")]
         public IActionResult ShowEmployeeForm(long id) => Json(ctx.Find<Employee>(id)); 
         
+        [Authorize]
         [HttpDelete("{id:long}")]
         public IActionResult DeleteEmployee(long id)
         {
@@ -30,6 +33,7 @@ namespace LearningTask.Controllers
             return Json($"Employee #{id} removed!");
         }
         
+        [Authorize]
         [HttpPut("{id:long}")]
         public IActionResult ChangeEmployee(long id, [FromBody] Employee employee)
         {
@@ -39,6 +43,7 @@ namespace LearningTask.Controllers
             return Json(employee);
         }
 
+        [Authorize]
         [HttpPost("new")]
         public IActionResult AddEmployeeFromJson([FromBody] Employee employee)
         {
@@ -48,9 +53,11 @@ namespace LearningTask.Controllers
             return new CreatedResult("Employees", employee);
         }
         
+        [Authorize]
         [HttpGet("all")]
         public IActionResult GetEmployees() => Json(ctx.Employees);
 
+        [Authorize]
         [HttpGet("page/{page:int}")]
         public IActionResult GetTenEmployees(int page, [FromQuery]string orderby, [FromQuery]bool descending)
         {
