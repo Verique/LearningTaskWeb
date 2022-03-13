@@ -1,4 +1,9 @@
-﻿using LearningTask.Extensions;
+﻿using System;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using LearningTask.Contexts;
+using LearningTask.Extensions;
 using LearningTask.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -6,26 +11,54 @@ using Microsoft.Extensions.Configuration;
 namespace LearningTask.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("login")]
     public class LoginController : Controller
     {
-        private IConfiguration configuration;
+        private readonly IConfiguration configuration;
+        private readonly PostgresContext postgresContext;
         
-        public LoginController(IConfiguration configuration)
+        public LoginController(IConfiguration configuration, PostgresContext postgresContext)
         {
             this.configuration = configuration;
+            this.postgresContext = postgresContext;
         }
         
         [HttpPut]
-        public IActionResult Login([FromBody] UserInfo info)
+        public IActionResult Authenticate([FromBody] UserCredentials userCredentials)
         {
-            if (info.Username != "admin" || info.Password != "admin") return BadRequest("Wrong user/password");
-            // for study purposes, simple check for admin-admin combination
+            var passwordHash = ComputePasswordHashBase64(userCredentials.Password);
+            var user = postgresContext.Users.FirstOrDefault(
+                user => user.Username == userCredentials.Username &&
+                        user.PasswordHash == passwordHash);
             
-            // TODO : its better to use dedicated user table, containing users & password hashes
-         
-            var token = configuration.GenerateJwtToken(info.Username);
+            if (user == null) return BadRequest("Wrong user/password");
+            
+            var token = configuration.GenerateJwtToken(userCredentials.Username);
             return Ok(token);
+        }
+
+        [HttpPost]
+        public IActionResult Register([FromBody] UserCredentials userCredentials)
+        {
+            if (postgresContext.Users.FirstOrDefault(user => user.Username == userCredentials.Username) is not null)
+            {
+                return BadRequest("This username is taken");
+            }
+            
+            postgresContext.Users.Add(new User(userCredentials.Username, ComputePasswordHashBase64(userCredentials.Password)));
+            postgresContext.SaveChanges();
+            return Ok(configuration.GenerateJwtToken(userCredentials.Username));
+        }
+
+        [HttpGet("users")]
+        public IActionResult GetUsers() => Json(postgresContext.Users);
+
+        private static string ComputePasswordHashBase64(string password)
+        {
+            var sha256 = new SHA256CryptoServiceProvider();
+            var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+
+            return Convert.ToBase64String(hash);
         }
     }
 }
