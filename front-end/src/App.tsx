@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
-import { Provider, useDispatch, useSelector } from 'react-redux';
 import './App.css';
-import { useActions } from './hooks/useActions';
-import { useTypedSelector } from './hooks/useTypedSelector';
+import { useAppDispatch, useAppSelector } from './hooks/reduxHooks';
+import { fetchEmployees } from './store/action-creators/employee';
 
 function App() {
-  const { employees, isFetching, error } = useTypedSelector(state => state.employee);
-  const { fetchEmployees } = useActions(); 
+  const { employees, isFetching, error } = useAppSelector(state => state.employee);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    fetchEmployees()
+    dispatch(fetchEmployees())
   }, [])
 
   return (
