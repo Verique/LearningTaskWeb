@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { EmployeeState } from "../../types/employeeState";
-import { fetchEmployees } from "../action-creators/employee";
+import { EmployeeState } from "../../types/EmployeeState";
+import { fetchEmployees } from "../action-creators/Employee";
 
 const initialState: EmployeeState = {
     employees: [],

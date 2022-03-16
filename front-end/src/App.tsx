@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { useAppDispatch, useAppSelector } from './hooks/reduxHooks';
-import { fetchEmployees } from './store/action-creators/employee';
+import { LoginPage } from './components/LoginPage';
+import { useAppDispatch, useAppSelector } from './hooks/ReduxHooks';
+import { fetchEmployees } from './store/action-creators/Employee';
 
 function App() {
   const { employees, isFetching, error } = useAppSelector(state => state.employee);
@@ -9,12 +10,12 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchEmployees())
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="App">
-      {employees.map(e => <h1>{e.name}</h1>)}
-    </div>
+      <LoginPage />
+    </div >
   );
 }
 
