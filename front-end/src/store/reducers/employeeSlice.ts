@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { useAppDispatch } from "../../hooks/ReduxHooks";
 import { EmployeeState } from "../../types/EmployeeState";
 import { fetchEmployees } from "../action-creators/Employee";
 
@@ -29,5 +30,4 @@ const employeeSlice = createSlice({
     }
 });
 
-export const { } = employeeSlice.actions;
 export default employeeSlice.reducer;
