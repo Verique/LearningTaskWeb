@@ -7,7 +7,7 @@ export const LoginPage = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useAppDispatch();
-    const { isLogged, isWaiting, jwt } = useAppSelector(state => state.auth);
+    const { isLogged } = useAppSelector(state => state.auth);
 
     const textChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value);

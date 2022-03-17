@@ -1,6 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { stat } from "fs";
-import { WritableDraft } from "immer/dist/internal";
 import { AuthState } from "../../types/AuthState";
 import { auth } from "../action-creators/Auth";
 
@@ -12,7 +10,12 @@ const initialState: AuthState = {
 
 export const authSlice = createSlice({
     name: "auth",
-    reducers: {},
+    reducers: {
+        logout: (state) => {
+            state.isLogged = false;
+            state.jwt = "";
+        }
+    },
     initialState,
     extraReducers: (builder) => {
         builder.addCase(auth.fulfilled, (state, action) => {
@@ -31,3 +34,4 @@ export const authSlice = createSlice({
 
 
 export default authSlice.reducer;
+export const { logout } = authSlice.actions;

@@ -1,5 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { useAppDispatch } from "../../hooks/ReduxHooks";
+import { createSlice } from "@reduxjs/toolkit";
 import { EmployeeState } from "../../types/EmployeeState";
 import { fetchEmployees } from "../action-creators/Employee";
 

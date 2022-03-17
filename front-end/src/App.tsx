@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import { LoginPage } from './components/LoginPage';
-import { useAppDispatch, useAppSelector } from './hooks/ReduxHooks';
+import { AppRouter } from './components/AppRouter';
+import { useAppDispatch } from './hooks/ReduxHooks';
 import { fetchEmployees } from './store/action-creators/Employee';
 
 function App() {
-  const { employees, isFetching, error } = useAppSelector(state => state.employee);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -13,9 +13,11 @@ function App() {
   }, [dispatch])
 
   return (
-    <div className="App">
-      <LoginPage />
-    </div >
+    <BrowserRouter>
+      <div className="App">
+        <AppRouter />
+      </div >
+    </BrowserRouter>
   );
 }
 
