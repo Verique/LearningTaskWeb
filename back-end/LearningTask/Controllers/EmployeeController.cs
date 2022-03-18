@@ -77,8 +77,9 @@ namespace LearningTask.Controllers
                 ctx.Employees.OrderBy(orderFunc);
             
             var pagedEmployees = ordered.Skip(PageSize * page).Take(PageSize).ToArray();
+            var totalPages = ctx.Employees.Count() / PageSize + 1;
 
-            return Json(pagedEmployees);
+            return Json(new PagedEmployeesResponse(pagedEmployees, totalPages));
         }
     }
 }

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../hooks/ReduxHooks";
-import { login } from "../../store/reducers/AuthSlice";
+import { login } from "../../store/slices/AuthSlice";
 
 export const AuthChecker = () => {
     const { jwt } = useAppSelector(state => state.auth);
