@@ -17,7 +17,7 @@ export const MainPage = () => {
         <div className="MainPage">
             <button onClick={logoutHandler}>Logout</button>
             {employees.map((employee) => {
-                return <div key={employee.id}> {new Date(employee.birthday + "Z").toLocaleString()} </div>
+                return <div key={employee.id}> {new Date(employee.birthday).toLocaleString()} </div>
             }
             )}
         </div>
