@@ -1,5 +1,7 @@
+import { Employee } from "./Employee";
+
 export interface EmployeeState {
-    employees: any[];
+    employees: Employee[];
     isFetching: boolean;
     error: string;
 }
