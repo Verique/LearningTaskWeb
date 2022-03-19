@@ -1,5 +1,5 @@
-import { ColumnNames } from "../../../../interfaces/ColumnsNames";
-import { TableViewParams } from "../../../../interfaces/TableViewParams";
+import { ColumnNames } from "../../interfaces/ColumnsNames";
+import { TableViewParams } from "../../interfaces/TableViewParams";
 import { THeader } from "../THeader";
 
 

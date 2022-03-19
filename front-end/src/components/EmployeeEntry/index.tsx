@@ -1,6 +1,6 @@
-import { useAppDispatch } from "../../../../hooks/ReduxHooks"
-import { Employee } from "../../../../interfaces/Employee";
-import { deleteEmployee } from "../../../../store/action-creators/Employee";
+import { useAppDispatch } from "../../hooks/ReduxHooks"
+import { Employee } from "../../interfaces/Employee";
+import { deleteEmployee } from "../../store/action-creators/Employee";
 import "./styles.css"
 
 export const EmployeeEntry = (props: { employee: Employee }) => {
