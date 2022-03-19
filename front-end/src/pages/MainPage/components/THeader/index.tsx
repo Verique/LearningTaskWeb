@@ -1,7 +1,7 @@
 import { useAppDispatch } from "../../../../hooks/ReduxHooks";
+import { ColumnNames } from "../../../../interfaces/ColumnsNames";
 import { setOrderBy } from "../../../../store/slices/EmployeeSlice";
-import { ColumnNames } from "../../../../types/ColumnsNames";
-import "./index.css"
+import "./styles.css"
 
 export const THeader = (props: { columnName: ColumnNames; orderby: ColumnNames; name: string; descending: boolean; }) => {
     const dispatch = useAppDispatch();

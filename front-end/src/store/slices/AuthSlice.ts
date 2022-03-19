@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AuthState } from "../../types/AuthState";
 import { auth } from "../action-creators/Auth";
+import { AuthState } from "../interfaces/AuthState";
 
 const initialState: AuthState = {
     isWaiting: false,

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHooks";
 import { auth } from "../../store/action-creators/Auth";
-import "./LoginPage.css"
+import "./styles.css"
 
 export const LoginPage = () => {
     const [username, setUsername] = useState("");
@@ -18,7 +18,7 @@ export const LoginPage = () => {
     }
 
     const loginButtonPressHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-        dispatch(auth({ username, password }));
+        dispatch(auth({ username, password, }));
     }
 
     return (

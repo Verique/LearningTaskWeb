@@ -1,6 +1,6 @@
 import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
-import { EmployeeState } from "../../types/EmployeeState";
 import { fetchEmployees } from "../action-creators/Employee";
+import { EmployeeState } from "../interfaces/EmployeeState";
 
 const fetchEmployeesReducer = (builder: ActionReducerMapBuilder<EmployeeState>) => {
     builder.addCase(fetchEmployees.fulfilled, (state, action) => {

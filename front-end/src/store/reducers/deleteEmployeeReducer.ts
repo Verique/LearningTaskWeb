@@ -1,6 +1,6 @@
 import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
-import { EmployeeState } from "../../types/EmployeeState";
 import { deleteEmployee } from "../action-creators/Employee";
+import { EmployeeState } from "../interfaces/EmployeeState";
 
 const deleteEmployeeReducer = (builder: ActionReducerMapBuilder<EmployeeState>) => {
     builder.addCase(deleteEmployee.fulfilled, (state, action) => {

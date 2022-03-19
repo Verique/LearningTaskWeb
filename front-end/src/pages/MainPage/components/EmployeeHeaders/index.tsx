@@ -1,6 +1,6 @@
-import { ColumnNames } from "../../../types/ColumnsNames";
-import { TableViewParams } from "../../../types/TableViewParams";
-import { THeader } from "./THeader";
+import { ColumnNames } from "../../../../interfaces/ColumnsNames";
+import { TableViewParams } from "../../../../interfaces/TableViewParams";
+import { THeader } from "../THeader";
 
 
 export const EmployeeHeaders = (props: { viewParams: TableViewParams; }) => {

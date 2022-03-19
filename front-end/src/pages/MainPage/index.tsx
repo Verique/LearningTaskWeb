@@ -3,8 +3,8 @@ import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHooks";
 import { fetchEmployees } from "../../store/action-creators/Employee";
 import { logout } from "../../store/slices/AuthSlice";
 import { nextPage, prevPage } from "../../store/slices/EmployeeSlice";
-import { EmployeeEntry } from "./EmployeeEntry";
-import { EmployeeHeaders } from "./EmployeeHeaders";
+import { EmployeeEntry } from "./components/EmployeeEntry";
+import { EmployeeHeaders } from "./components/EmployeeHeaders";
 
 export const MainPage = () => {
     const dispatch = useAppDispatch();

@@ -1,5 +1,5 @@
-import { Employee } from "./Employee";
-import { TableViewParams } from "./TableViewParams";
+import { Employee } from "../../interfaces/Employee";
+import { TableViewParams } from "../../interfaces/TableViewParams";
 
 export interface EmployeeState {
     employees: Employee[];

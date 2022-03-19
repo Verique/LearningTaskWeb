@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { TableViewParams } from "../../types/TableViewParams";
+import { TableViewParams } from "../../interfaces/TableViewParams";
 import getUrl from "../../urlHelper";
 
 export const fetchEmployees = createAsyncThunk(

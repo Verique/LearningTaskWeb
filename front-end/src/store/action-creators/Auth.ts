@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { AuthCredentials } from "../../types/AuthCredentials";
+import { AuthCredentials } from "../interfaces/AuthCredentials";
 import getUrl from "../../urlHelper";
 
 export const auth = createAsyncThunk("auth/jwt",

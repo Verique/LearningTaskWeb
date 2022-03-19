@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ColumnNames } from "../../types/ColumnsNames";
-import { EmployeeState } from "../../types/EmployeeState";
+import { ColumnNames } from "../../interfaces/ColumnsNames";
+import { EmployeeState } from "../interfaces/EmployeeState";
 import deleteEmployeeReducer from "../reducers/deleteEmployeeReducer";
 import fetchEmployeesReducer from "../reducers/fetchEmployeesReducer";
 
