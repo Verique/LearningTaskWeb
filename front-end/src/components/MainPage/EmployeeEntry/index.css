@@ -1,0 +1,10 @@
+.EmployeeItem {
+    padding-left: 10px;
+    min-width: 100px;
+}
+.EmployeeItem.small {
+    min-width: 50px;
+}
+.EmployeeItem.email {
+    min-width: 300px;
+}

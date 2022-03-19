@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ColumnNames } from "../../types/ColumnsNames";
 import { EmployeeState } from "../../types/EmployeeState";
-import { fetchEmployees } from "../action-creators/Employee";
+import deleteEmployeeReducer from "../reducers/deleteEmployeeReducer";
+import fetchEmployeesReducer from "../reducers/fetchEmployeesReducer";
 
 const initialState: EmployeeState = {
     employees: [],
@@ -31,20 +32,8 @@ const employeeSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchEmployees.fulfilled, (state, action) => {
-            state.employees = action.payload.employees;
-            state.totalPages = action.payload.pageCount;
-            state.error = "";
-            state.isFetching = false;
-        });
-        builder.addCase(fetchEmployees.pending, (state) => {
-            state.error = "";
-            state.isFetching = true;
-        });
-        builder.addCase(fetchEmployees.rejected, (state, action) => {
-            state.error = action.error.message ? action.error.message : "";
-            state.isFetching = false;
-        });
+        fetchEmployeesReducer(builder);
+        deleteEmployeeReducer(builder);
     }
 });
 

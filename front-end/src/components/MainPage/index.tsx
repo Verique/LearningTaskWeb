@@ -3,7 +3,8 @@ import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHooks";
 import { fetchEmployees } from "../../store/action-creators/Employee";
 import { logout } from "../../store/slices/AuthSlice";
 import { nextPage, prevPage } from "../../store/slices/EmployeeSlice";
-import { EmployeeEntry, EmployeeHeaders } from "./EmployeeEntry";
+import { EmployeeEntry } from "./EmployeeEntry";
+import { EmployeeHeaders } from "./EmployeeHeaders";
 
 export const MainPage = () => {
     const dispatch = useAppDispatch();
@@ -18,7 +19,7 @@ export const MainPage = () => {
     return (
         <div className="MainPage">
             <button onClick={logoutHandler}>Logout</button>
-            <table><tbody>
+            <table><tbody className="EmployeeTable">
                 <EmployeeHeaders viewParams={viewParams} />
                 {employees.map((employee) =>
                     <EmployeeEntry employee={employee} key={employee.id} />)}

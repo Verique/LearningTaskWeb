@@ -4,7 +4,7 @@ import { TableViewParams } from "../../types/TableViewParams";
 import getUrl from "../../urlHelper";
 
 export const fetchEmployees = createAsyncThunk(
-    "employees/status",
+    "employees",
     async (viewParams: TableViewParams) => {
         const url = getUrl(`/employee/page/${viewParams.page}`)
         const response = await axios.get(url, {
@@ -14,3 +14,16 @@ export const fetchEmployees = createAsyncThunk(
         return response.data;
     }
 )
+
+export const deleteEmployee = createAsyncThunk(
+    "employee/delete",
+    async (id: number) => {
+        const url = getUrl(`/employee/${id}`)
+        const response = await axios.delete(url, {
+            headers: { Authorization: "Bearer " + localStorage.getItem("token") ?? "" },
+        });
+        return response.data;
+    }
+)
+
+

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Text.Json;
 using LearningTask.Contexts;
 using LearningTask.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -29,9 +28,12 @@ namespace LearningTask.Controllers
         public IActionResult DeleteEmployee(long id)
         {
             var employee = ctx.Employees.Find(id);
+            
+            if (employee is null) return BadRequest();
+            
             ctx.Employees.Remove(employee);
             ctx.SaveChanges();
-            return Json($"Employee #{id} removed!");
+            return Ok(id);
         }
         
         [Authorize]
@@ -77,7 +79,7 @@ namespace LearningTask.Controllers
                 ctx.Employees.OrderBy(orderFunc);
             
             var pagedEmployees = ordered.Skip(PageSize * page).Take(PageSize).ToArray();
-            var totalPages = ctx.Employees.Count() / PageSize + 1;
+            var totalPages = (ctx.Employees.Count() - 1) / PageSize + 1;
 
             return Json(new PagedEmployeesResponse(pagedEmployees, totalPages));
         }
