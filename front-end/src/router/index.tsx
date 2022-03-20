@@ -6,6 +6,7 @@ import { MainPage } from "../pages/MainPage";
 export const privateRoutes: RouteObject[] = [
     { element: <MainPage />, path: "employee" },
     { element: <EditPage />, path: "employee/:id" },
+    { element: <EditPage />, path: "employee/new" },
     { element: <Navigate replace to="employee" />, path: "*" }]
 
 export const publicRoutes: RouteObject[] = [

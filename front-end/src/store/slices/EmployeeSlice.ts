@@ -20,8 +20,7 @@ const employeeSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        nextPage: (state) => { state.viewParams.page++ },
-        prevPage: (state) => { state.viewParams.page-- },
+        changePage: (state, action) => { state.viewParams.page = action.payload },
         setOrderBy: (state, action) => {
             if (state.viewParams.orderby === action.payload) {
                 state.viewParams.descending = !state.viewParams.descending
@@ -38,4 +37,4 @@ const employeeSlice = createSlice({
 });
 
 export default employeeSlice.reducer;
-export const { nextPage, prevPage, setOrderBy } = employeeSlice.actions;
+export const { changePage, setOrderBy } = employeeSlice.actions;

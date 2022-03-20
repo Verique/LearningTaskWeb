@@ -5,6 +5,7 @@ import { AuthState } from "../interfaces/AuthState";
 const initialState: AuthState = {
     isWaiting: false,
     isLogged: false,
+    isReadingLocal: true
 }
 
 export const authSlice = createSlice({
@@ -13,8 +14,9 @@ export const authSlice = createSlice({
         logout: (state) => {
             state.isLogged = false;
         },
-        login: (state) => {
-            state.isLogged = true;
+        loginFromLocal: (state, action) => {
+            state.isLogged = action.payload;
+            state.isReadingLocal = false;
         }
     },
     initialState,
@@ -34,4 +36,4 @@ export const authSlice = createSlice({
 
 
 export default authSlice.reducer;
-export const { logout, login } = authSlice.actions;
+export const { logout, loginFromLocal } = authSlice.actions;
