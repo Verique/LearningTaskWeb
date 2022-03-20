@@ -7,3 +7,16 @@
 .InputField label{
     padding-right:10px;
 }
+
+.Inputfalse{
+    border: 2px solid red;
+}
+
+.Inputtrue{
+    border: 2px solid gray;
+}
+
+.FormButton[disabled=true]{
+    pointer-events: none;
+    font-size: 60px;
+}

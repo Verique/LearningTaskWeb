@@ -5,7 +5,6 @@ import { RouteElements } from "./RouteElements";
 export const AppRouter = () => {
     const { isLogged } = useAppSelector(state => state.auth)
 
-
     return (
         <div className="AppRouter">
             {isLogged ?

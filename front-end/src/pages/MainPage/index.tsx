@@ -26,7 +26,7 @@ export const MainPage = () => {
     const createNewHandler =
         (event: React.MouseEvent) => {
             event.preventDefault();
-            navigate("employee/new");
+            navigate("new");
         }
 
     useEffect(() => { dispatch(fetchEmployees(viewParams)) }, [dispatch, viewParams])
