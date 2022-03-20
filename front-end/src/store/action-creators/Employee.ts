@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { EmployeeEditableData } from "../../interfaces/Employee";
 import { TableViewParams } from "../../interfaces/TableViewParams";
 import getUrl from "../../urlHelper";
 
@@ -22,6 +23,19 @@ export const deleteEmployee = createAsyncThunk(
         const response = await axios.delete(url, {
             headers: { Authorization: "Bearer " + localStorage.getItem("token") ?? "" },
         });
+        return response.data;
+    }
+)
+
+export const addNewEmployee = createAsyncThunk(
+    "employee/new",
+    async (employee: EmployeeEditableData) => {
+        const url = getUrl(`/employee/new`)
+        const response = await axios.post(url,
+            { ...employee },
+            {
+                headers: { Authorization: "Bearer " + localStorage.getItem("token") ?? "" }
+            });
         return response.data;
     }
 )

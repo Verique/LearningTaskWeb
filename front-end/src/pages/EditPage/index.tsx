@@ -1,8 +1,13 @@
-import { ChangeEvent, useState } from "react"
+import React, { useState } from "react"
+import { useNavigate } from "react-router";
+import { useAppDispatch } from "../../hooks/ReduxHooks";
+import { addNewEmployee } from "../../store/action-creators/Employee";
 import { InputFieldProps } from "./interfaces"
 import "./styles.css"
 
 export const EditPage = () => {
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [salary, setSalary] = useState(0);
@@ -13,15 +18,17 @@ export const EditPage = () => {
     const [salaryOk, setSalaryOk] = useState(true);
     const [dateOk, setDateOk] = useState(true);
 
+    const formOk = dateOk && nameOk && emailOk && salaryOk;
+
     const onNameChange: React.ChangeEventHandler =
-        (event: ChangeEvent<HTMLInputElement>) => {
+        (event: React.ChangeEvent<HTMLInputElement>) => {
             const name = event.target.value;
             setName(name.trim())
             setNameOk(name.trim() !== "")
         }
 
     const onEmailChange: React.ChangeEventHandler =
-        (event: ChangeEvent<HTMLInputElement>) => {
+        (event: React.ChangeEvent<HTMLInputElement>) => {
             const email = event.target.value;
             setEmail(email)
             const regex = new RegExp(/[^\s@]+@[^\s@]+\.[^\s@]+/);
@@ -29,19 +36,30 @@ export const EditPage = () => {
         }
 
     const onSalaryChange: React.ChangeEventHandler =
-        (event: ChangeEvent<HTMLInputElement>) => {
+        (event: React.ChangeEvent<HTMLInputElement>) => {
             const salary = event.target.valueAsNumber;
             setSalary(salary)
             setSalaryOk(salary >= 0);
         }
 
     const onDateChange: React.ChangeEventHandler =
-        (event: ChangeEvent<HTMLInputElement>) => {
+        (event: React.ChangeEvent<HTMLInputElement>) => {
             const date = event.target.value;
             setDate(new Date(date))
             setDateOk(true);
         }
-    const formOk = dateOk && nameOk && emailOk && salaryOk;
+
+    const onAddButtonClick: React.MouseEventHandler =
+        () => {
+            dispatch(addNewEmployee(
+                {
+                    Name: name,
+                    Salary: salary,
+                    Birthday: date.toISOString(),
+                    Email: email
+                }));
+            navigate("/employee");
+        }
 
     return <div>
         <InputField
@@ -72,7 +90,9 @@ export const EditPage = () => {
         />
         <button
             className="FormButton"
-            disabled={!formOk}>
+            disabled={!formOk}
+            onClick={onAddButtonClick}
+        >
             Add Employee
         </button>
     </div>

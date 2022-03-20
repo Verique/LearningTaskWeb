@@ -1,8 +1,15 @@
 export interface Employee {
     id: number;
+    lastModifiedDate: string;
     name: string;
     email: string;
     birthday: string;
     salary: number;
-    lastModifiedDate: string;
+}
+
+export interface EmployeeEditableData {
+    Name: string;
+    Email: string;
+    Birthday: string;
+    Salary: number;
 }

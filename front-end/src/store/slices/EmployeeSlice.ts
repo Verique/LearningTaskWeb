@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ColumnNames } from "../../interfaces/ColumnsNames";
 import { EmployeeState } from "../interfaces/EmployeeState";
+import addNewEmployeeReducer from "../reducers/addNewEmployeeReducer";
 import deleteEmployeeReducer from "../reducers/deleteEmployeeReducer";
 import fetchEmployeesReducer from "../reducers/fetchEmployeesReducer";
 
@@ -33,6 +34,7 @@ const employeeSlice = createSlice({
     extraReducers: (builder) => {
         fetchEmployeesReducer(builder);
         deleteEmployeeReducer(builder);
+        addNewEmployeeReducer(builder);
     }
 });
 
