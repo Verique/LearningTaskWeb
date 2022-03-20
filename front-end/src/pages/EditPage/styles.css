@@ -1,0 +1,9 @@
+.InputField{
+    justify-content: space-between;
+    display: flex;
+    padding: 10px;
+}
+
+.InputField label{
+    padding-right:10px;
+}

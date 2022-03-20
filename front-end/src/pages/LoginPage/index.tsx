@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHooks";
+import { useAppDispatch } from "../../hooks/ReduxHooks";
 import { auth } from "../../store/action-creators/Auth";
 import "./styles.css"
 
@@ -7,7 +7,6 @@ export const LoginPage = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useAppDispatch();
-    const { isLogged } = useAppSelector(state => state.auth);
 
     const textChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value);
@@ -18,7 +17,8 @@ export const LoginPage = () => {
     }
 
     const loginButtonPressHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-        dispatch(auth({ username, password, }));
+        dispatch(auth({ username, password }))
+            .then((action) => localStorage.setItem("token", action.payload));
     }
 
     return (
@@ -29,7 +29,6 @@ export const LoginPage = () => {
             <label htmlFor="password">Password</label>
             <input type="password" name="password" onChange={passwordChangeHandler} value={password} />
             <button className="loginButton" onClick={loginButtonPressHandler}>Log in</button>
-            {isLogged ? <h5>Logged in!</h5> : ""}
         </div >
     );
 };

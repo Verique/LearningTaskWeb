@@ -10,7 +10,10 @@ export const MainPage = () => {
     const dispatch = useAppDispatch();
     const { employees, viewParams, totalPages } = useAppSelector(state => state.employee);
 
-    const logoutHandler = () => { dispatch(logout()) }
+    const logoutHandler = () => {
+        dispatch(logout());
+        localStorage.setItem("token", "")
+    }
     const nextPageHandler = () => { dispatch(nextPage()) }
     const prevPageHandler = () => { dispatch(prevPage()) }
 

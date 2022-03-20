@@ -5,7 +5,6 @@ import { AuthState } from "../interfaces/AuthState";
 const initialState: AuthState = {
     isWaiting: false,
     isLogged: false,
-    jwt: ""
 }
 
 export const authSlice = createSlice({
@@ -13,24 +12,21 @@ export const authSlice = createSlice({
     reducers: {
         logout: (state) => {
             state.isLogged = false;
-            state.jwt = "";
         },
-        login: (state, action) => {
+        login: (state) => {
             state.isLogged = true;
-            state.jwt = action.payload;
         }
     },
     initialState,
     extraReducers: (builder) => {
-        builder.addCase(auth.fulfilled, (state, action) => {
-            state.jwt = action.payload;
+        builder.addCase(auth.fulfilled, (state) => {
             state.isLogged = true;
             state.isWaiting = false;
         })
         builder.addCase(auth.pending, (state) => {
             state.isWaiting = true;
         })
-        builder.addCase(auth.rejected, (state, action) => {
+        builder.addCase(auth.rejected, (state) => {
             state.isWaiting = false;
         })
     }
