@@ -3,7 +3,9 @@ import { ColumnNames } from "../../interfaces/ColumnsNames";
 import { EmployeeState } from "../interfaces/EmployeeState";
 import addNewEmployeeReducer from "../reducers/addNewEmployeeReducer";
 import deleteEmployeeReducer from "../reducers/deleteEmployeeReducer";
+import editEmployeeReducer from "../reducers/editEmployeeReducer";
 import fetchEmployeesReducer from "../reducers/fetchEmployeesReducer";
+import getEmployeeReducer from "../reducers/getEmployeeReducer";
 
 const initialState: EmployeeState = {
     employees: [],
@@ -35,6 +37,8 @@ const employeeSlice = createSlice({
         fetchEmployeesReducer(builder);
         deleteEmployeeReducer(builder);
         addNewEmployeeReducer(builder);
+        getEmployeeReducer(builder);
+        editEmployeeReducer(builder);
     }
 });
 

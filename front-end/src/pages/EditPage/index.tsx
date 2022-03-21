@@ -1,47 +1,21 @@
-import { EmployeeEditableData } from "../../interfaces/Employee";
-import { BirthdayField } from "./components/BirthdayField";
-import { CancelButton } from "./components/CancelButton";
-import { EmailField } from "./components/EmailField";
-import { NameField } from "./components/NameField";
-import { SalaryField } from "./components/SalaryField";
-import { SubmitButton } from "./components/SubmitButton";
-import { EditPageProps } from "./interfaces";
-import "./styles.css";
-import { useFormField } from "../../hooks/useFormField";
+import { useEffect } from "react";
+import { useMatch, useNavigate } from "react-router"
+import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHooks";
+import { getEmployee } from "../../store/action-creators/Employee";
+import { EmployeeForm } from "../EmployeeForm";
 
-export const EditPage = (props: EditPageProps) => {
+export const EditPage = () => {
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const { currentEmployee } = useAppSelector(state => state.employee);
+    const match = useMatch("/employee/:id");
+    const id = Number(match?.params.id);
 
-    const nameStates = useFormField("", false);
-    const emailStates = useFormField("", false);
-    const dateStates = useFormField((new Date()).toISOString().substring(0, 10), true);
-    const salaryStates = useFormField(0, true);
+    useEffect(() => { if (isNaN(id)) navigate("/employee") }, [id, navigate]);
+    useEffect(() => { dispatch(getEmployee(id)) }, [id, dispatch])
 
-    const currentEmployee: EmployeeEditableData = {
-        name: nameStates.field,
-        salary: salaryStates.field,
-        birthday: dateStates.field,
-        email: emailStates.field,
-    }
-
-    const formOk = dateStates.fieldOk &&
-        nameStates.fieldOk &&
-        emailStates.fieldOk &&
-        salaryStates.fieldOk;
-
-
-    return <div>
-        <NameField states={nameStates} />
-        <EmailField states={emailStates} />
-        <SalaryField states={salaryStates} />
-        <BirthdayField states={dateStates} />
-
-        <div className="Buttons">
-            <SubmitButton
-                disabled={!formOk}
-                employee={currentEmployee}
-                value="Add Employee" />
-            <CancelButton />
-        </div>
-    </div>
+    if (currentEmployee)
+        return <EmployeeForm type="edit" employee={currentEmployee} eid={id} />
+    else
+        return <></>
 }
-

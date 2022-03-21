@@ -1,5 +1,5 @@
-import React, { HTMLProps, ReducerAction, SetStateAction } from "react";
-import { EmployeeEditableData } from "../../interfaces/Employee";
+import React, { HTMLProps, SetStateAction } from "react";
+import { Employee, EmployeeEditableData } from "../../interfaces/Employee";
 
 export interface InputFieldProps<T> extends HTMLProps<HTMLInputElement> {
     label: string;
@@ -8,8 +8,16 @@ export interface InputFieldProps<T> extends HTMLProps<HTMLInputElement> {
     getValue: (event: React.ChangeEvent<HTMLInputElement>) => T;
 };
 
-export interface EditPageProps {
-    id?: number
+export interface EmployeeFormProps {
+    employee?: Employee;
+    eid?: number;
+    type: "edit" | "add";
+}
+
+export interface SubmitButtonProps extends HTMLProps<HTMLButtonElement> {
+    employee: EmployeeEditableData;
+    eid?: number;
+    type: "edit" | "add";
 }
 
 export interface FieldStates<T> {
@@ -17,8 +25,4 @@ export interface FieldStates<T> {
     setField: React.Dispatch<SetStateAction<T>>;
     fieldOk: boolean;
     setFieldOk: React.Dispatch<SetStateAction<boolean>>;
-}
-
-export interface SubmitButtonProps extends HTMLProps<HTMLButtonElement> {
-    employee: EmployeeEditableData;
 }

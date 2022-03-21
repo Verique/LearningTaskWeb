@@ -41,6 +41,7 @@ namespace LearningTask.Controllers
         public IActionResult ChangeEmployee(long id, [FromBody] Employee employee)
         {
             employee.Id = id;
+            employee.LastModifiedDate = DateTime.UtcNow;
             ctx.Employees.Update(employee);
             ctx.SaveChanges();
             return Json(employee);

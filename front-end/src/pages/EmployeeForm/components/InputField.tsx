@@ -1,6 +1,13 @@
+import { useEffect } from "react";
 import { InputFieldProps } from "../interfaces";
 
 export function InputField<T>(props: InputFieldProps<T>) {
+
+    const CheckFieldHandler = () => {
+        props.states.setFieldOk(props.checkField(props.states.field));
+    }
+
+    useEffect(CheckFieldHandler, [props])
 
     const FieldChangeHandler: React.ChangeEventHandler = onFieldChange(
         props.states.setField,
