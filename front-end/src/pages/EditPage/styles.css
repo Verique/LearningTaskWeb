@@ -8,15 +8,15 @@
     padding-right:10px;
 }
 
-.Inputfalse{
-    border: 2px solid red;
+.Input-false{
+    border: 1px solid red;
 }
 
-.Inputtrue{
-    border: 2px solid gray;
+.Input-true{
+    border: 1px solid gray;
 }
 
-.FormButton[disabled=true]{
-    pointer-events: none;
-    font-size: 60px;
+.Buttons{
+    display:flex;
+    justify-content: space-between;
 }

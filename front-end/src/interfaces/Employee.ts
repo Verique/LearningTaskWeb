@@ -1,15 +1,11 @@
-export interface Employee {
+export interface Employee extends EmployeeEditableData {
     id: number;
     lastModifiedDate: string;
+}
+
+export interface EmployeeEditableData {
     name: string;
     email: string;
     birthday: string;
     salary: number;
-}
-
-export interface EmployeeEditableData {
-    Name: string;
-    Email: string;
-    Birthday: string;
-    Salary: number;
 }

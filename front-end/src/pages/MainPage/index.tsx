@@ -6,6 +6,7 @@ import { changePage } from "../../store/slices/EmployeeSlice";
 import { EmployeeEntry } from "../../components/EmployeeEntry";
 import { EmployeeHeaders } from "../../components/EmployeeHeaders";
 import { useNavigate } from "react-router-dom";
+import "./styles.css"
 
 export const MainPage = () => {
     const dispatch = useAppDispatch();
@@ -33,24 +34,26 @@ export const MainPage = () => {
 
     return (
         <div className="MainPage">
-            <button onClick={logoutHandler}>Logout</button>
-            <table><tbody className="EmployeeTable">
-                <EmployeeHeaders viewParams={viewParams} />
-                {employees.map((employee) =>
-                    <EmployeeEntry employee={employee} key={employee.id} />)}
-            </tbody></table>
+            <button onClick={logoutHandler} className="LogoutButton">Logout</button>
             <div>
-                {(viewParams.page > 0) ?
-                    <button onClick={changePageHandler(viewParams.page - 1)}>
-                        {"<"}
-                    </button> : ""}
-                {viewParams.page}
-                {(viewParams.page < totalPages - 1) ?
-                    <button onClick={changePageHandler(viewParams.page + 1)}>
-                        {">"}
-                    </button> : ""}
+                <button onClick={createNewHandler}>Add New</button>
+                <table><tbody className="EmployeeTable">
+                    <EmployeeHeaders viewParams={viewParams} />
+                    {employees.map((employee) =>
+                        <EmployeeEntry employee={employee} key={employee.id} />)}
+                </tbody></table>
+                <div>
+                    {(viewParams.page > 0) ?
+                        <button onClick={changePageHandler(viewParams.page - 1)}>
+                            {"<"}
+                        </button> : ""}
+                    {viewParams.page}
+                    {(viewParams.page < totalPages - 1) ?
+                        <button onClick={changePageHandler(viewParams.page + 1)}>
+                            {">"}
+                        </button> : ""}
+                </div>
             </div>
-            <button onClick={createNewHandler}>Add New</button>
         </div >
     );
 }

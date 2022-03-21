@@ -23,7 +23,7 @@ export const EditPage = () => {
     const onNameChange: React.ChangeEventHandler =
         (event: React.ChangeEvent<HTMLInputElement>) => {
             const name = event.target.value;
-            setName(name.trim())
+            setName(name)
             setNameOk(name.trim() !== "")
         }
 
@@ -53,13 +53,15 @@ export const EditPage = () => {
         () => {
             dispatch(addNewEmployee(
                 {
-                    Name: name,
-                    Salary: salary,
-                    Birthday: date.toISOString(),
-                    Email: email
+                    name,
+                    salary,
+                    birthday: date.toISOString(),
+                    email
                 }));
             navigate("/employee");
         }
+
+    const onCancelButtonClick = () => navigate("/employee");
 
     return <div>
         <InputField
@@ -88,20 +90,26 @@ export const EditPage = () => {
             onChange={onDateChange}
             isOk={dateOk}
         />
-        <button
-            className="FormButton"
-            disabled={!formOk}
-            onClick={onAddButtonClick}
-        >
-            Add Employee
-        </button>
+        <div className="Buttons">
+            <button
+                disabled={!formOk}
+                onClick={onAddButtonClick}
+            >
+                Add Employee
+            </button>
+            <button
+                onClick={onCancelButtonClick}
+            >
+                Cancel
+            </button>
+        </div>
     </div>
 }
 
 export const InputField = (props: InputFieldProps) => {
     return <div className="InputField" >
         <label htmlFor={props.label}>{props.label}</label>
-        <input className={"Input" + props.isOk}
+        <input className={"Input-" + props.isOk}
             type={props.type ?? "text"}
             name={props.label}
             value={props.value}
