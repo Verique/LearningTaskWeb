@@ -22,7 +22,6 @@ namespace LearningTask.Models
         
         public int Salary { get; set; }
         
-        [Column(TypeName = "date")]
         public DateTime LastModifiedDate { get; set; }
     }
 }
