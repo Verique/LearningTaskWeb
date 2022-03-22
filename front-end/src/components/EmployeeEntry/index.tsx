@@ -23,7 +23,7 @@ export const EmployeeEntry = (props: { employee: Employee }) => {
         <td className="EmployeeItem small">{props.employee.salary}</td>
         <td className="EmployeeItem small">{new Date(props.employee.birthday).toLocaleDateString()}</td>
         <td className="EmployeeItem ">{new Date(props.employee.lastModifiedDate).toLocaleString()}</td>
-        <td><button onClick={editHandler(props.employee.id)}>Изменить</button></td>
-        <td><button onClick={deleteHandler(props.employee.id)}>Удалить</button></td>
+        <td><button onClick={editHandler(props.employee.id)}>Edit</button></td>
+        <td><button onClick={deleteHandler(props.employee.id)}>Delete</button></td>
     </tr>
 }

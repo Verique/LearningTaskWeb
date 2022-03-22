@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Router } from 'react-router-dom';
 import './App.css';
 import { AppRouter } from './components/AppRouter';
 import { checkLogin } from './helpers/checkLogin';
