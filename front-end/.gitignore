@@ -10,6 +10,11 @@
 
 # production
 /build
+/public
+
+.eslint.json
+.prettierrc.json
+
 
 # misc
 .DS_Store

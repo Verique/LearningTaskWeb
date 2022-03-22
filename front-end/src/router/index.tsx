@@ -1,17 +1,16 @@
-import { Navigate, RouteObject } from "react-router-dom";
-import { AddPage } from "../pages/AddPage";
-import { EditPage } from "../pages/EditPage";
-import { LoginPage } from "../pages/LoginPage";
-import { MainPage } from "../pages/MainPage";
+import { useRoutes } from "react-router-dom";
+import { useAppSelector } from "../store/hooks";
+import { privateRoutes } from "./privateRoutes";
+import { publicRoutes } from "./publicRoutes";
 
-export const privateRoutes: RouteObject[] = [
-    { element: <MainPage />, path: "employee" },
-    { element: <EditPage />, path: "employee/:id" },
-    { element: <AddPage />, path: "employee/new" },
-    { element: <Navigate replace to="employee" />, path: "*" }]
+export const AppRouter = () => {
+  const { isLogged } = useAppSelector((state) => state.auth);
+  const privateRoutesElement = useRoutes(privateRoutes);
+  const publicRoutesElement = useRoutes(publicRoutes);
 
-export const publicRoutes: RouteObject[] = [
-    { element: <LoginPage />, path: "login" },
-    { element: <Navigate replace to="login" />, path: "*" }
-]
-
+  return (
+    <div className="AppRouter">
+      {(() => (isLogged ? privateRoutesElement : publicRoutesElement))()}
+    </div>
+  );
+};

@@ -1,0 +1,22 @@
+.InputField {
+  justify-content: space-between;
+  display: flex;
+  padding: 10px;
+}
+
+.InputField label {
+  padding-right: 10px;
+}
+
+.Input-false {
+  border: 1px solid red;
+}
+
+.Input-true {
+  border: 1px solid gray;
+}
+
+.Buttons {
+  display: flex;
+  justify-content: space-between;
+}

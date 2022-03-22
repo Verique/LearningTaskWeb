@@ -1,10 +1,10 @@
-.MainPage{
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
+.MainPage {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
 
-.LogoutButton{
-    align-self: flex-end;
-    margin-bottom: auto;
+.LogoutButton {
+  align-self: flex-end;
+  margin-bottom: auto;
 }
