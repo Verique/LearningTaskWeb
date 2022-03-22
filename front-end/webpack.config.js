@@ -1,4 +1,5 @@
 const path = require('path');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = function (webpackEnv) {
     process.env.NODE_ENV = 'development';
@@ -6,7 +7,10 @@ module.exports = function (webpackEnv) {
         entry: './src/index.tsx',
         mode: 'development',
         devServer: {
-            static: './dist',
+            static: { directory: './dist', watch: true },
+            historyApiFallback: true,
+            hot: true,
+            open: true
         },
         module: {
             rules: [
@@ -17,7 +21,7 @@ module.exports = function (webpackEnv) {
                 },
                 {
                     test: /\.css$/,
-                    use: ['style-loader', 'css-loader']
+                    use: [MiniCssExtractPlugin.loader, 'css-loader']
                 }
             ],
         },
@@ -25,8 +29,10 @@ module.exports = function (webpackEnv) {
             extensions: ['.tsx', '.ts', '.js', '.css'],
         },
         output: {
+            publicPath: '/',
             filename: 'bundle.js',
             path: path.resolve(__dirname, 'dist'),
         },
+        plugins: [new MiniCssExtractPlugin()]
     }
 };

@@ -1,0 +1,115 @@
+/*!*****************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/index.css ***!
+  \*****************************************************************/
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/*!***************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/App.css ***!
+  \***************************************************************/
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  min-height: 100vh;
+}
+
+/*!*************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/pages/EmployeeForm/styles.css ***!
+  \*************************************************************************************/
+.InputField{
+    justify-content: space-between;
+    display: flex;
+    padding: 10px;
+}
+
+.InputField label{
+    padding-right:10px;
+}
+
+.Input-false{
+    border: 1px solid red;
+}
+
+.Input-true{
+    border: 1px solid gray;
+}
+
+.Buttons{
+    display:flex;
+    justify-content: space-between;
+}
+
+/*!**********************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/pages/LoginPage/styles.css ***!
+  \**********************************************************************************/
+.loginPage {
+    display: flex;
+    border: 2px solid cyan;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    width: 300px;
+}
+
+.loginTitle {
+    margin-bottom: auto;
+    margin-top:20px;
+}
+
+.loginButton {
+    margin-top: auto;
+    margin-bottom:20px;
+    font-size: 32px;
+}
+/*!*******************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/components/EmployeeEntry/styles.css ***!
+  \*******************************************************************************************/
+.EmployeeItem {
+    padding-left: 10px;
+    min-width: 100px;
+}
+.EmployeeItem.small {
+    min-width: 50px;
+}
+.EmployeeItem.email {
+    min-width: 300px;
+}
+/*!*************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/components/THeader/styles.css ***!
+  \*************************************************************************************/
+.THeader {
+    cursor: pointer;
+    padding: 10px;
+}
+
+/*!*********************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/pages/MainPage/styles.css ***!
+  \*********************************************************************************/
+.MainPage{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.LogoutButton{
+    align-self: flex-end;
+    margin-bottom: auto;
+}
