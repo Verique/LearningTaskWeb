@@ -1,10 +1,13 @@
 const path = require('path');
 
 module.exports = function (webpackEnv) {
-    process.env.NODE_ENV = 'production';
+    process.env.NODE_ENV = 'development';
     return {
         entry: './src/index.tsx',
-        mode: 'production',
+        mode: 'development',
+        devServer: {
+            static: './dist',
+        },
         module: {
             rules: [
                 {
@@ -14,12 +17,12 @@ module.exports = function (webpackEnv) {
                 },
                 {
                     test: /\.css$/,
-                    use: 'css-loader'
+                    use: ['style-loader', 'css-loader']
                 }
             ],
         },
         resolve: {
-            extensions: ['.tsx', '.ts', '.js'],
+            extensions: ['.tsx', '.ts', '.js', '.css'],
         },
         output: {
             filename: 'bundle.js',

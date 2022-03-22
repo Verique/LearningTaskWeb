@@ -1,4 +1,6 @@
 {
     "plugins": ["@babel/plugin-syntax-jsx"],
-    "presets": ["react-app"]
+    "presets": [
+        ["@babel/preset-react", {"runtime": "automatic"}],
+        "@babel/preset-typescript"]
 }
