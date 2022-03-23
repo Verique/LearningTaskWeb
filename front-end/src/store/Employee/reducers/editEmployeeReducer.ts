@@ -5,7 +5,7 @@ import { EmployeeState } from "../interfaces/EmployeeState";
 const editEmployeeReducer = (
   builder: ActionReducerMapBuilder<EmployeeState>
 ) => {
-  builder.addCase(editEmployee.fulfilled, (state, action) => {
+  builder.addCase(editEmployee.fulfilled, (state) => {
     state.error = "";
   });
   builder.addCase(editEmployee.pending, (state) => {

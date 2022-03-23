@@ -71,7 +71,7 @@ namespace LearningTask.Controllers
                 "email" => o => o.Email,
                 "birthday" => o => o.Birthday,
                 "salary" => o => o.Salary,
-                "lastmoddate" => o=> o.LastModifiedDate,
+                "lastModifiedDate" => o=> o.LastModifiedDate,
                 _ => o => o.Id
             };
             

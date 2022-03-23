@@ -4,11 +4,6 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.0",
-    "@types/jest": "^27.4.1",
-    "@types/node": "^16.11.26",
-    "@types/react": "^17.0.40",
-    "@types/react-dom": "^17.0.13",
-    "@types/react-redux": "^7.1.23",
     "axios": "^0.26.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -21,18 +16,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
-    "serve": "webpack serve",
-    "start": "react-scripts start",
-    "build": "webpack",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "format": "prettier --write \"src/**/*.{ts,tsx,css,json}\"",
+    "startF": "webpack serve --config webpack.config.dev.ts --mode development",
+    "startB": "cd \"../back-end/LearningTask\" && dotnet run",
+    "build": "webpack --config webpack.config.dev.ts --mode development"
   },
   "browserslist": {
     "production": [
@@ -49,10 +36,18 @@
   "devDependencies": {
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
-    "@types/fork-ts-checker-webpack-plugin": "^0.4.5",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.22",
+    "@types/react": "^17.0.41",
+    "@types/react-dom": "^17.0.14",
+    "@types/react-redux": "^7.1.23",
+    "@types/webpack": "^5.28.0",
     "fork-ts-checker-webpack-plugin": "^7.2.1",
+    "html-webpack-plugin": "^5.5.0",
     "prettier": "^2.6.0",
+    "ts-node": "^10.7.0",
     "typescript": "^4.6.2",
-    "webpack-cli": "^4.9.2"
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
   }
 }

@@ -12,9 +12,8 @@
 /build
 /public
 
-.eslint.json
 .prettierrc.json
-
+.vscode
 
 # misc
 .DS_Store
