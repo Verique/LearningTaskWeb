@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { fetchEmployees } from "../../store/Employee/Employee";
-import { changePage } from "../../store/Employee/EmployeeSlice";
 import { EmployeeEntry } from "../../components/EmployeeEntry";
 import { EmployeeHeaders } from "../../components/EmployeeHeaders";
 import { useNavigate } from "react-router-dom";
 import "./styles.css";
 import { logout } from "../../store/Auth/AuthSlice";
+import { PagePicker } from "../../components/PagePicker";
 
 export const MainPage = () => {
   const dispatch = useAppDispatch();
@@ -18,11 +18,6 @@ export const MainPage = () => {
   const logoutHandler = () => {
     dispatch(logout());
     localStorage.setItem("token", "");
-  };
-
-  const changePageHandler = (newPage: number) => (event: React.MouseEvent) => {
-    event.preventDefault();
-    dispatch(changePage(newPage));
   };
 
   const createNewHandler = (event: React.MouseEvent) => {
@@ -49,24 +44,8 @@ export const MainPage = () => {
             ))}
           </tbody>
         </table>
-        <div>
-          {viewParams.page > 0 ? (
-            <button onClick={changePageHandler(viewParams.page - 1)}>
-              {"<"}
-            </button>
-          ) : (
-            ""
-          )}
-          {viewParams.page}
-          {viewParams.page < totalPages - 1 ? (
-            <button onClick={changePageHandler(viewParams.page + 1)}>
-              {">"}
-            </button>
-          ) : (
-            ""
-          )}
-        </div>
       </div>
+      <PagePicker currentPage={viewParams.page} totalPages={totalPages} />
     </div>
   );
 };

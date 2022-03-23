@@ -57,9 +57,20 @@ namespace LearningTask.Controllers
             return new CreatedResult("Employees", employee);
         }
         
-        [Authorize]
-        [HttpGet("all")]
-        public IActionResult GetEmployees() => Json(ctx.Employees);
+        // [HttpGet("all")]
+        // public IActionResult GetEmployees() => Json(ctx.Employees);
+        
+        // [HttpPost("addjson")]
+        // public IActionResult addJson([FromBody]Employee[] json)
+        // {
+        //     foreach (var emp in json)
+        //     {
+        //       emp.LastModifiedDate = DateTime.UtcNow;
+        //       ctx.Employees.Add(emp);
+        //     }
+        //     ctx.SaveChanges();
+        //     return Ok();
+        // }
 
         [Authorize]
         [HttpGet("page/{page:int}")]
