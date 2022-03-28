@@ -42,8 +42,8 @@ namespace LearningTask
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Secret"])) 
                 };
             });
-            services.AddDbContext<PostgresContext>(
-                o => o.UseNpgsql(Configuration.GetConnectionString("PostgresContext")));
+            services.AddDbContext<MsSqlContext>(
+                o => o.UseSqlServer(Configuration.GetConnectionString("MsSql")));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

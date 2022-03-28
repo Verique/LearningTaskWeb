@@ -12,9 +12,9 @@ namespace LearningTask.Controllers
     public class EmployeeController : Controller
     {
         private const int PageSize = 10;
-        private PostgresContext ctx;
+        private MsSqlContext ctx;
         
-        public EmployeeController(PostgresContext ctx)
+        public EmployeeController(MsSqlContext ctx)
         {
             this.ctx = ctx;
         }
@@ -57,21 +57,6 @@ namespace LearningTask.Controllers
             return new CreatedResult("Employees", employee);
         }
         
-        // [HttpGet("all")]
-        // public IActionResult GetEmployees() => Json(ctx.Employees);
-        
-        // [HttpPost("addjson")]
-        // public IActionResult addJson([FromBody]Employee[] json)
-        // {
-        //     foreach (var emp in json)
-        //     {
-        //       emp.LastModifiedDate = DateTime.UtcNow;
-        //       ctx.Employees.Add(emp);
-        //     }
-        //     ctx.SaveChanges();
-        //     return Ok();
-        // }
-
         [Authorize]
         [HttpGet("page/{page:int}")]
         public IActionResult GetTenEmployees(int page, [FromQuery]string orderby, [FromQuery]bool descending)
@@ -94,6 +79,23 @@ namespace LearningTask.Controllers
             var totalPages = (ctx.Employees.Count() - 1) / PageSize + 1;
 
             return Json(new PagedEmployeesResponse(pagedEmployees, totalPages));
+        }
+        
+        // *** FOR TESTING ***
+        
+        [HttpGet("all")]
+        public IActionResult GetEmployees() => Json(ctx.Employees);
+        
+        [HttpPost("addjson")]
+        public IActionResult AddJsonList([FromBody]Employee[] json)
+        {
+            foreach (var emp in json)
+            {
+              emp.LastModifiedDate = DateTime.UtcNow;
+              ctx.Employees.Add(emp);
+            }
+            ctx.SaveChanges();
+            return Ok();
         }
     }
 }

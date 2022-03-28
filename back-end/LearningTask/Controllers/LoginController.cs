@@ -15,12 +15,12 @@ namespace LearningTask.Controllers
     public class LoginController : Controller
     {
         private readonly IConfiguration configuration;
-        private readonly PostgresContext postgresContext;
+        private readonly MsSqlContext postgresContext;
         
-        public LoginController(IConfiguration configuration, PostgresContext postgresContext)
+        public LoginController(IConfiguration configuration, MsSqlContext msSqlContext)
         {
             this.configuration = configuration;
-            this.postgresContext = postgresContext;
+            this.postgresContext = msSqlContext;
         }
         
         [HttpPut]

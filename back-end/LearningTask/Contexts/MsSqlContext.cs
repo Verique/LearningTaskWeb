@@ -5,11 +5,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LearningTask.Contexts
 {
-    public class PostgresContext : DbContext
+    public class MsSqlContext : DbContext
     {
-
-        
-        public PostgresContext(DbContextOptions<PostgresContext> options)
+        public MsSqlContext(DbContextOptions<MsSqlContext> options)
             :base(options) { }
         
         public DbSet<Employee> Employees { get; set; }
@@ -23,7 +21,7 @@ namespace LearningTask.Contexts
             
             modelBuilder.Entity<Employee>()
                 .Property(b => b.LastModifiedDate)
-                .HasDefaultValueSql("timezone('utc'::text, now())")
+                .HasDefaultValueSql("GETUTCDATE()")
                 .HasConversion(dateTimeConverter);
             modelBuilder.Entity<Employee>()
                 .Property(b => b.Birthday)
